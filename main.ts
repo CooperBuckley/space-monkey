@@ -42,7 +42,9 @@ let mySprite3 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Food)
 info.startCountdown(90)
-game.onUpdateInterval(15000, function () {
+game.setGameOverMessage(false, "CUPCAKE GOT YOU!!")
+game.setGameOverMessage(true, "GET BOZO'D CUPCAKE!!")
+game.onUpdateInterval(9000, function () {
     mySprite2 = sprites.create(img`
         ....ffffff.........ccc..
         ....ff22ccf.......cc4f..
@@ -66,7 +68,8 @@ game.onUpdateInterval(15000, function () {
 forever(function () {
     controller.moveSprite(mySprite, 150, 150)
     if (mySprite.overlapsWith(mySprite2)) {
-        game.gameOver(false)
+        info.changeLifeBy(-1)
+        mySprite2.setPosition(randint(10, 140), randint(10, 110))
     }
     if (mySprite.overlapsWith(mySprite3)) {
         info.changeScoreBy(1)
@@ -77,5 +80,9 @@ forever(function () {
     if (mySprite2.overlapsWith(mySprite3)) {
         mySprite3.setPosition(randint(10, 140), randint(10, 110))
     }
+    if (mySprite2.overlapsWith(mySprite2)) {
+        mySprite2.setPosition(randint(10, 140), randint(10, 110))
+    }
     game.setGameOverScoringType(game.ScoringType.HighScore)
+    mySprite2.follow(mySprite, 25)
 })
