@@ -42,7 +42,7 @@ let mySprite3 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Food)
 info.startCountdown(90)
-game.setGameOverMessage(false, "CUPCAKE GOT YOU!!")
+game.setGameOverMessage(false, "Game Over!")
 game.setGameOverMessage(true, "GET BOZO'D CUPCAKE!!")
 game.onUpdateInterval(9000, function () {
     mySprite2 = sprites.create(img`
